@@ -1,9 +1,33 @@
-version: '3'
+version: "3"
 
 tasks:
-  styles:
-    desc: Compile SASS to CSS
+  start:dev:
+    desc: start with server in dev mod with watch
     cmds:
-      - grass -s=compressed ./templates/index.scss ./assets/css/main.min.css
+      - cargo run
     sources:
-      - ./templates/*.scss
+      - ./src/**/*.*
+      - ./templates/**/*.{html,scss}
+    deps:
+      - task: styles
+      - task: start:db
+      - task: prisma:gen
+
+  start:db:
+    desc: start database
+    cmds:
+      - docker compose up -d
+
+  styles:
+    desc: tailwindcss build with watch
+    cmds:
+      - ./tailwindcss -i ./templates/index.scss -o ./assets/css/main.min.css
+    sources:
+      - ./templates/**/*.{html,scss}
+
+  prisma:gen:
+    desc: generate prisma client
+    cmds:
+      - cargo prisma generate
+    sources:
+      - ./prisma/schema.prisma

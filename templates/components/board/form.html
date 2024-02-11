@@ -1,0 +1,7 @@
+{% import "macros/form.html" as form %}
+{% import "macros/button.html" as button %}
+
+<form hx-post="boards/create" hx-target="#board-list">
+  {% call form::input(ty="text", name="name") %}
+  {% call button::primary(ty="text", content="submit") %}
+</form>
