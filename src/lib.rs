@@ -7,28 +7,20 @@ mod prisma;
 mod router;
 mod views;
 
-use std::sync::Arc;
-
 use anyhow::Result;
-use config::Config;
+use app_state::AppState;
 use prisma::PrismaClient;
 use router::app_router;
 
 pub async fn start() -> Result<()> {
-    let prisma_client = Arc::new(
-        PrismaClient::_builder()
-            .build()
-            .await
-            .expect("Failed to connect to Prisma"),
-    );
+    let prisma_client = PrismaClient::_builder()
+        .build()
+        .await
+        .expect("Failed to connect to Prisma");
 
-    let config = Arc::new(Config::new());
-
-    // build our application with a single route
-    let router = app_router(config, prisma_client).await;
-
-    // run it with hyper on localhost:3000
-    let address = "0.0.0.0:3000";
+    let state = AppState::new(prisma_client).setup().await?;
+    let router = app_router(state).await;
+    let address = "0.0.0.0:3000"; // TODO: move port into Config struct
     let listener = tokio::net::TcpListener::bind(address).await.unwrap();
 
     println!("Listening on {}", address);

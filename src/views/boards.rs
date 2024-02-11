@@ -1,10 +1,11 @@
+use std::sync::Arc;
+
 use askama::Template;
 use axum::extract::State;
 use axum_htmx::HxRequest;
 
 use crate::app_state::AppState;
 use crate::prisma::board::Data as Board;
-use crate::prisma::PrismaClient;
 
 #[derive(Template)] // This will generate the code...
 #[template(path = "views/boards.html")]
@@ -15,12 +16,12 @@ pub struct BoardsTemplate {
 
 pub async fn page(
     HxRequest(hx_request): HxRequest,
-    State(db): State<PrismaClient>,
+    State(state): State<AppState>,
 ) -> BoardsTemplate {
-    // let boards =
+    let boards = state.db.board().find_many(vec![]).exec().await.unwrap();
 
     BoardsTemplate {
         use_layout: !hx_request,
-        boards: vec![],
+        boards,
     }
 }
