@@ -1,13 +1,10 @@
 use crate::app_state::AppState;
 use crate::oidc::{error::MiddlewareError, EmptyAdditionalClaims, OidcAuthLayer, OidcLoginLayer};
-use axum::{
-    error_handling::HandleErrorLayer, http::Uri, response::IntoResponse, routing::get, Router,
-};
+use axum::{error_handling::HandleErrorLayer, http::Uri, response::IntoResponse, Router};
 use tower::ServiceBuilder;
 use tower_http::services::ServeDir;
 use tower_sessions::{cookie::SameSite, MemoryStore, SessionManagerLayer};
-mod routes;
-use routes::router;
+mod views;
 
 pub async fn app_router(state: AppState) -> Router {
     let session_store = MemoryStore::default();
@@ -40,9 +37,10 @@ pub async fn app_router(state: AppState) -> Router {
         );
 
     Router::new()
-        .nest("/", router(state))
+        .nest("/", views::router())
         .nest_service("/assets", ServeDir::new("assets"))
         .layer(oidc_login_service)
         .layer(oidc_auth_service)
         .layer(session_service)
+        .with_state(state)
 }
