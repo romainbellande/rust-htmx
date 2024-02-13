@@ -4,6 +4,8 @@ use axum::{error_handling::HandleErrorLayer, http::Uri, response::IntoResponse, 
 use tower::ServiceBuilder;
 use tower_http::services::ServeDir;
 use tower_sessions::{cookie::SameSite, MemoryStore, SessionManagerLayer};
+
+mod htmx;
 mod views;
 
 pub async fn app_router(state: AppState) -> Router {

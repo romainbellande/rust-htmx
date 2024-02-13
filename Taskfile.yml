@@ -21,9 +21,11 @@ tasks:
   styles:
     desc: tailwindcss build with watch
     cmds:
-      - ./tailwindcss -i ./templates/index.scss -o ./assets/css/main.min.css
+      - npm exec -- tailwindcss --minify -i ./templates/index.scss -o ./assets/css/main.min.css
     sources:
       - ./templates/**/*.{html,scss}
+    deps:
+      - task: npm:install
 
   prisma:gen:
     desc: generate prisma client
@@ -31,3 +33,10 @@ tasks:
       - cargo prisma generate
     sources:
       - ./prisma/schema.prisma
+
+  npm:install:
+    desc: install npm dependencies
+    cmds:
+      - npm i
+    sources:
+      - ./package.json

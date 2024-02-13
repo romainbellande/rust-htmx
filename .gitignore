@@ -2,3 +2,4 @@
 .task
 .env
 src/prisma.rs
+node_modules

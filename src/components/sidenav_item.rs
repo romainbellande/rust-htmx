@@ -12,4 +12,8 @@ pub const SIDENAV_ITEMS: &[SidenavItem] = &[
         text: "Backlog",
         href: "/backlog",
     },
+    SidenavItem {
+        text: "Boards",
+        href: "/boards",
+    },
 ];

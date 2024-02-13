@@ -26,4 +26,6 @@ classDiagram
 ```
 ```
 
+## Resources
 
+- [hyperui](https://www.hyperui.dev/)
