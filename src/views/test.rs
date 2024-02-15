@@ -1,11 +1,15 @@
+use crate::components::Page;
 use crate::utils::renderer;
 use axum::response::IntoResponse;
+use axum_htmx::HxRequest;
 use leptos::*;
 
-pub async fn MyTestPage() -> impl IntoResponse {
+pub async fn page(HxRequest(hx_request): HxRequest) -> impl IntoResponse {
     renderer(move || {
         view! {
-            <div>HelloWorld</div>
+            <Page use_layout=!hx_request>
+                <div>HelloWorld</div>
+            </Page>
         }
     })
 }
