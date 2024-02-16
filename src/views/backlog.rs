@@ -1,15 +1,15 @@
-use askama::Template;
+use crate::components::ui::Page;
+use crate::utils::renderer;
+use axum::response::IntoResponse;
 use axum_htmx::HxRequest;
+use leptos::*;
 
-#[derive(Template)] // This will generate the code...
-#[template(path = "views/backlog.html")]
-pub struct BacklogTemplate {
-    use_layout: bool,
+pub async fn page(HxRequest(hx_request): HxRequest) -> impl IntoResponse {
+    renderer(move || {
+        view! {
+            <Page use_layout=!hx_request>
+                <div>HelloWorld</div>
+            </Page>
+        }
+    })
 }
-
-pub async fn page(HxRequest(hx_request): HxRequest) -> BacklogTemplate {
-    BacklogTemplate {
-        use_layout: !hx_request,
-    }
-}
-

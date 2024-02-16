@@ -7,7 +7,6 @@ tasks:
       - cargo run
     sources:
       - ./src/**/*.*
-      - ./templates/**/*.{html,scss}
     deps:
       - task: styles
       - task: start:db
@@ -21,9 +20,10 @@ tasks:
   styles:
     desc: tailwindcss build with watch
     cmds:
-      - npm exec -- tailwindcss --minify -i ./templates/index.scss -o ./assets/css/main.min.css
+      - npm exec -- tailwindcss --minify -i ./index.scss -o ./assets/css/main.min.css
     sources:
-      - ./templates/**/*.{html,scss}
+      - ./src/**/*.rs
+      - ./index.scss
     deps:
       - task: npm:install
 

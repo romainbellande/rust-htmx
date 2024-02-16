@@ -1,10 +1,11 @@
 mod app_state;
 mod components;
 mod config;
-mod icons;
+mod htmx;
 mod oidc;
 mod prisma;
 mod router;
+mod utils;
 mod views;
 
 use anyhow::Result;

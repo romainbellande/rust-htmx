@@ -144,7 +144,6 @@ where
                 if let (Some(mut login_session), Some(query)) = (login_session, query) {
                     // the request has the request headers of the oidc redirect
                     // parse the headers and exchange the code for a valid token
-                    println!("test 5");
 
                     if login_session.csrf_token.secret() != &query.state {
                         return Err(MiddlewareError::CsrfTokenInvalid);

@@ -8,8 +8,6 @@ default-run = "rust-htmx"
 
 [dependencies]
 anyhow = "1.0.79"
-askama = { version = "0.12.1", features = ["with-axum"] }
-askama_axum = "0.4.0"
 async-trait = "0.1.77"
 axum = "0.7.4"
 axum-htmx = "0.5.0"
@@ -18,7 +16,6 @@ dotenvy = "0.15.7"
 futures-util = "0.3.30"
 http = "1.0.0"
 leptos = { version = "0.6.5", features = ["nightly", "ssr"] }
-maud = { version = "0.26.0", features = ["axum"] }
 once_cell = "1.19.0"
 openidconnect = { version = "3.4.0", features = [
   "nightly",
@@ -49,6 +46,6 @@ prisma-client-rust-cli = { git = "https://github.com/Brendonovich/prisma-client-
 
 [workspace]
 
-members = ["./", "./prisma-cli"]
+members = ["./", "prisma-cli"]
 
 default-members = ["./"]
