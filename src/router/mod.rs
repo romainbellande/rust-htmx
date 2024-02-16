@@ -40,6 +40,7 @@ pub async fn app_router(state: AppState) -> Router {
 
     Router::new()
         .nest("/", views::router())
+        .nest("/htmx", htmx::router())
         .nest_service("/assets", ServeDir::new("assets"))
         .layer(oidc_login_service)
         .layer(oidc_auth_service)

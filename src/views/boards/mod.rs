@@ -1,16 +1,11 @@
 use crate::app_state::AppState;
-use crate::components::Page;
-use crate::prisma;
+use crate::components::boards::{Form, List};
+use crate::components::ui::Page;
 use crate::utils::renderer;
 use axum::extract::State;
 use axum::response::IntoResponse;
 use axum_htmx::HxRequest;
 use leptos::*;
-mod form;
-mod list;
-
-use form::Form;
-use list::List;
 
 pub async fn page(
     HxRequest(hx_request): HxRequest,

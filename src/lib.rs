@@ -1,6 +1,7 @@
 mod app_state;
 mod components;
 mod config;
+mod htmx;
 mod oidc;
 mod prisma;
 mod router;

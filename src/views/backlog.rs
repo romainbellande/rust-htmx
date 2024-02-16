@@ -1,4 +1,4 @@
-use crate::components::Page;
+use crate::components::ui::Page;
 use crate::utils::renderer;
 use axum::response::IntoResponse;
 use axum_htmx::HxRequest;
