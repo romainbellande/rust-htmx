@@ -1,16 +1,20 @@
+use super::Dropdown;
+use crate::icons;
 use leptos::*;
 
 #[component]
 pub fn Header() -> impl IntoView {
     view! {
-        <nav class="top-0 left-0 border-b border-slate-400 h-16 fixed w-screen flex justify-between">
-            <div>"Cortex"</div>
+        <nav class="px-8 top-0 left-0 border-b border-slate-200 h-16 fixed w-screen flex justify-between items-center">
+            <div class="text-xl font-bold">"Cortex"</div>
             <div>
-                <a href="/projects">"Project"</a>
+                <a href="/boards">"board"</a>
             </div>
-            <div>
+            <div class="flex space-x-4">
                 <div>"Search"</div>
-                <div>"User"</div>
+                <Dropdown>
+                    <icons::User />
+                </Dropdown>
             </div>
         </nav>
     }

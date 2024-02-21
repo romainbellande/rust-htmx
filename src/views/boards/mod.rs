@@ -6,6 +6,7 @@ use axum::extract::State;
 use axum::response::IntoResponse;
 use axum_htmx::HxRequest;
 use leptos::*;
+pub mod board;
 
 pub async fn page(
     HxRequest(hx_request): HxRequest,

@@ -3,14 +3,18 @@ version: "3"
 tasks:
   start:dev:
     desc: start with server in dev mod with watch
-    cmds:
-      - cargo run
-    sources:
-      - ./src/**/*.*
     deps:
+      - task: start:serve:dev
       - task: styles
       - task: start:db
       - task: prisma:gen
+
+  start:serve:dev:
+    watch: true
+    cmds:
+      - cargo run
+    sources:
+      - ./src/**/*.rs
 
   start:db:
     desc: start database
@@ -19,16 +23,19 @@ tasks:
 
   styles:
     desc: tailwindcss build with watch
+    watch: true
     cmds:
       - npm exec -- tailwindcss --minify -i ./index.scss -o ./assets/css/main.min.css
     sources:
       - ./src/**/*.rs
       - ./index.scss
+      - ./tailwind.config.js
     deps:
       - task: npm:install
 
   prisma:gen:
     desc: generate prisma client
+    watch: true
     cmds:
       - cargo prisma generate
     sources:
@@ -36,6 +43,7 @@ tasks:
 
   npm:install:
     desc: install npm dependencies
+    watch: true
     cmds:
       - npm i
     sources:

@@ -6,21 +6,11 @@ pub fn Input(
     #[prop(into)] name: String,
 ) -> impl IntoView {
     view! {
-        <label
-            class="relative block rounded-md border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600"
-        >
-        <input
-            type=ty
-            class="peer border-none bg-transparent placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0"
-            name=name.clone()
-            placeholder=name.clone()
-        />
-
-        <span
-            class="pointer-events-none absolute start-2.5 top-0 -translate-y-1/2 bg-white p-0.5 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-xs"
-        >
-            { name }
-        </span>
+        <label class="form-control w-full max-w-xs">
+            <div class="label">
+                <span class="label-text">{ name.clone() }</span>
+            </div>
+            <input type=ty name=name class="input input-bordered w-full max-w-xs" />
         </label>
     }
 }
