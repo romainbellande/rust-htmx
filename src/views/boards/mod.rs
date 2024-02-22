@@ -23,9 +23,9 @@ pub async fn page(
     renderer(move || {
         view! {
             <Page use_layout=!hx_request>
-                <div id="boards" class="h-full py-4 flex justify-center">
+                <div id="boards" class="h-full py-4 flex flex-col items-center">
                     <Form />
-                    <List boards=boards />
+                    <div hx-get="/htmx/boards" hx-trigger="load"></div>
                 </div>
             </Page>
         }

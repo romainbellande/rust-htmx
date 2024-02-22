@@ -1,9 +1,14 @@
 use crate::app_state::AppState;
 use crate::htmx;
-use axum::{routing::post, Router};
+use axum::{
+    routing::{get, post},
+    Router,
+};
 
 fn board_router() -> Router<AppState> {
-    Router::new().route("/create", post(htmx::boards::create::htmx))
+    Router::new()
+        .route("/", get(htmx::boards::list::htmx))
+        .route("/create", post(htmx::boards::create::htmx))
 }
 
 pub fn router() -> Router<AppState> {
