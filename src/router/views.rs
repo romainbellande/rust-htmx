@@ -7,4 +7,5 @@ pub fn router() -> Router<AppState> {
         .route("/", get(kanban::page))
         .route("/backlog", get(backlog::page))
         .route("/boards", get(boards::page))
+        .route("/boards/:board_id", get(boards::board::page))
 }

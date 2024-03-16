@@ -11,6 +11,19 @@ fn EmptyList() -> impl IntoView {
 }
 
 #[component]
+fn BoardCell(#[prop()] board: Board) -> impl IntoView {
+    view! {
+        <tr>
+            <td>{board.name.clone()}</td>
+            <td>{board.created_at.clone().to_string()}</td>
+            <tr>
+                 "view"
+            </tr>
+        </tr>
+    }
+}
+
+#[component]
 pub fn List(#[prop()] boards: Vec<Board>) -> impl IntoView {
     let is_not_empty = !boards.is_empty();
     view! {

@@ -7,7 +7,7 @@
 title: "Rust HTMX Data Model"
 ---
 classDiagram
-  class Board {
+  class board {
     name: string
   }
   class Task {
@@ -15,13 +15,13 @@ classDiagram
     content: string
   }
 
-  class BoardColumn {
+  class boardColumn {
     name: string
   }
 
-  Board "1" --> "0..*" Todo
-  Board "1" --> "0..*" BoardColumn
-  BoardColumn "1" --> "0..*" Task
+  board "1" --> "0..*" Todo
+  board "1" --> "0..*" boardColumn
+  boardColumn "1" --> "0..*" Task
 
 ```
 ```
